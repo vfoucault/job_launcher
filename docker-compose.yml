@@ -1,0 +1,25 @@
+version: '3'
+services:
+
+  tests:
+    build:
+      context: .
+      dockerfile: tests/tests.Dockerfile
+    volumes:
+      - files:/app/tmp
+    environment:
+        JOB_LAUNCHER_DIRECTORY: ./tmp
+        JOB_LAUNCHER_NUMBER: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - files:/app/tmp
+    environment:
+        JOB_LAUNCHER_DIRECTORY: ./tmp
+        JOB_LAUNCHER_NUMBER: 10
+
+volumes:
+     files:
